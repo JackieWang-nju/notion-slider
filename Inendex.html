@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notion 图片轮播</title>
+<style>
+  body { margin: 0; display: flex; justify-content: center; align-items: center; height:100vh; background:#f4f4f4; }
+  .slider-container { position: relative; width: 100%; max-width: 600px; overflow: hidden; border-radius:10px; }
+  .slider { display: flex; transition: transform 0.5s ease; }
+  .slider img { width:100%; flex-shrink:0; }
+  .nav-btn { position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:white; border:none; padding:10px; cursor:pointer; font-size:18px; border-radius:50%; }
+  .prev { left:10px; }
+  .next { right:10px; }
+</style>
+</head>
+<body>
+  <div class="slider-container">
+    <div id="slider" class="slider">
+      <img src="https://i.ibb.co/tTh94D7X/2025-08-29-104757-148.jpg" alt="图1">
+      <img src="https://i.ibb.co/hvN95F6/2025-08-29-104821-540.jpg" alt="图2">
+    </div>
+    <button class="nav-btn prev" onclick="prevSlide()">◀</button>
+    <button class="nav-btn next" onclick="nextSlide()">▶</button>
+  </div>
+<script>
+let index = 0;
+const slider = document.getElementById('slider');
+const total = slider.children.length;
+function showSlide(){ slider.style.transform = `translateX(-${index * 100}%)`; }
+function nextSlide(){ index = (index + 1) % total; showSlide(); }
+function prevSlide(){ index = (index - 1 + total) % total; showSlide(); }
+</script>
+</body>
+</html>
